@@ -3,7 +3,7 @@
 ### 安裝Step[pipenv or virtualenv]
 1. install python3
 2. install pip3
-3. [全局安裝]pip3 install pipenv or virtualenv
+3. [全局安裝] install pipenv or virtualenv
 4. mkdir test
 > 須先創立一個專案資料夾
 5. cd test
@@ -20,4 +20,4 @@
 10. pipenv --venv
 > 查詢當前虛擬環境所在路徑
 
-11. pip install flask
+11. pip freeze
