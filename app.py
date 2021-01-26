@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import Flask, render_template, session, redirect, url_for
+from flask import Flask, render_template, session, redirect, url_for, flash
 from flask.helpers import url_for
 from flask_bootstrap import Bootstrap
 from flask_moment import Moment
@@ -32,6 +32,9 @@ def internal_server_error(e):
 def index():
     form = NameForm()
     if form.validate_on_submit():
+        pre_name = session.get('name')
+        if pre_name is not None and pre_name != form.name.data:
+            flash('Looks like you have changed your name!')
         session['name'] = form.name.data
         return redirect(url_for('index'))
     return render_template('index.html', form=form, name=session.get('name'), current_time=datetime.utcnow())
@@ -39,4 +42,4 @@ def index():
 
 @app.route('/user/<name>')
 def user(name):
-    return render_template('user.html', name=name)
+    return render_template('user.html', name=session.get('name'))
